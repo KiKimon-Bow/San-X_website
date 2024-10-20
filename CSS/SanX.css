@@ -1,0 +1,12 @@
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.SanXlogo {
+    padding: 10px;
+    margin: 10px;
+}
+
+.SanXlogo img {
+    width: 20%;
+}

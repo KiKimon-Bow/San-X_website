@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet" />
+  <link rel="stylesheet" href="../CSS/SanX.css">
+  <!-- <script src="../bootstrap-5.2.3-dist/js/bootstrap.bundle.js"></script> -->
+  <title>Game</title>
+
+  <style>
+    
+    #image-container {
+      width: 120px;
+      height: 200px;
+      /* background-color: aquamarine; */
+      left: 50%;
+      transform: translateX(-50%);
+      /* 水平居中 */
+      display: flex;
+      justify-content: center;
+      /* 讓圖片水平居中 */
+      position: relative;
+      /* 讓圖片能夠使用 position 屬性 */
+    }
+
+    .game-container {
+      height: 100vh;
+      background-image: url('../img/BG/BG1.png');
+    }
+
+    #image-container img {
+      position: absolute;
+      max-height: 400px;
+      background-color: plum;
+    }
+
+    .result {
+      justify-content: center;
+      /*水平居中*/
+      align-items: center;
+      /* 垂直居中 */
+      /* width: 150px; */
+      height: 36px;
+      margin-top: 20px;
+      font-size: 16px;
+      color: white;
+      background-color: palevioletred;
+      border-radius: 8px;
+      /* 設置圓角 */
+      text-align: center;
+      /* 文字居中對齊 */
+    }
+
+    #options-container {
+      display: flex;
+      justify-content: center;
+      /* 水平居中 */
+      flex-wrap: wrap;
+      /* 如果選項超出容器寬度，則換行 */
+      gap: 10px;
+      /* 設置選項間的間距 */
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div style="margin: 10px;" class="SanXlogo">
+      <img src="../img/logo/San-X.svg" alt="image is disappeared">
+    </div>
+  </header>
+
+  <div class="game-container container-sm">
+    <div>
+      <br>
+      <h3 class="text-center">~角落生物辨認角色小遊戲~</h3>
+    </div>
+
+    <br>
+
+    <!-- 隨機顯示圖片 -->
+    <button class="btn d-grid gap-2 col-4 mx-auto" style="background-color: NavajoWhite" onclick="showRan()">START /
+      NEXT</button>
+
+    <br>
+
+    <div id="options-container">
+      <!-- 選項會被插入在這裡 -->
+    </div>
+
+    <br>
+
+    <div>
+      <button class="btn d-grid gap-2 col-4 mx-auto" style="background-color: darksalmon;"
+        onclick="checkAnswer()">送出答案</button>
+    </div>
+
+
+    <div id="result" class="result d-grid gap-2 col-4 mx-auto">結果</div>
+
+    <br>
+
+    <div id="image-container" style="width:120px; height:200px;"></div>
+  </div>
+
+  <script>
+
+    // 答案映射
+    const answerMapping = {
+      1: "藍珍珠",
+      2: "蜥蜴(真)",
+      3: "偽蜥蜴(恐龍)",
+      4: "貓咪",
+      5: "雜草",
+      6: "麻雀",
+      7: "鼹鼠",
+      8: "乾淨的灰塵",
+      9: "企鵝(真)",
+      10: "偽企鵝(河童)",
+      11: "偽蝸牛",
+      12: "包袱巾",
+      13: "恐龍媽媽",
+      14: "灰塵",
+      15: "炸蝦尾",
+      16: "白熊",
+    };
+
+    let correctAnswer = null;
+
+    // 隨機顯示圖片
+    function showRan() {
+      var imgnumber = Math.floor(Math.random() * 6) + 1; // 產生 1 到 6 的隨機數
+      // var imgnumber = Math.floor(Math.random() * 6);
+      var imgurl = `../img/game/Game-3D/${imgnumber}.jpg`;
+      // var imgurl = [
+      //   "img/1.png",
+      //   "img/2.png",
+      //   "img/3.png",
+      //   "img/4.png",
+      //   "img/5.png"
+      // ];
+
+      // 確保圖片容器是空的
+      var Icontainer = document.getElementById('image-container');
+      Icontainer.innerHTML = '';
+
+      // 創建圖片元素
+      var img = document.createElement('img');
+      img.src = imgurl;
+      // img.src = imgurl[imgnumber];
+
+
+      // 設定圖片的絕對定位
+      img.style.position = 'absolute';
+
+      // 將圖片插入到容器中
+      Icontainer.appendChild(img);
+
+      //   設置正確的答案
+      //   correctAnswer = answerMapping[imgnumber];
+
+      // 設置正確的答案
+      correctAnswer = answerMapping[imgnumber];
+
+      // 更新選項
+      updateOptions(correctAnswer);
+    }
+
+    function updateOptions(correctAnswer) {
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = ''; // 清空目前的選項
+
+      // 隨機選擇3個錯誤選項
+      const allAnswers = Object.values(answerMapping);
+      const wrongAnswers = allAnswers.filter(answer => answer !== correctAnswer);
+      const shuffledWrongAnswers = shuffleArray(wrongAnswers).slice(0, 3);
+
+      // 將正確答案和錯誤選項組合
+      const options = [correctAnswer, ...shuffledWrongAnswers];
+      const shuffledOptions = shuffleArray(options);
+
+      // 創建選項元素
+      shuffledOptions.forEach(option => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'answer';
+        input.value = option;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(' ' + option));
+        optionsContainer.appendChild(label);
+        optionsContainer.appendChild(document.createElement('br'));
+      });
+    }
+
+    function shuffleArray(array) {
+      // 這是簡單的數組隨機排序函數
+      let currentIndex = array.length, temporaryValue, randomIndex;
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    }
+
+    function checkAnswer() {
+      // 獲取選中的答案
+      const selectedOption = document.querySelector('input[name="answer"]:checked');
+      if (selectedOption) {
+        const selectedValue = selectedOption.value;
+        const resultText = (selectedValue === correctAnswer) ? "恭喜答對(*´▽`*)" : "答錯囉_(:3 」∠ )_";
+        document.getElementById('result').innerText = resultText;
+      } else {
+        document.getElementById('result').innerText = "請選擇一個答案";
+      }
+    }
+
+
+
+  </script>
+
+
+</body>
+
+</html>

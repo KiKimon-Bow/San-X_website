@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.css">
+    <script src="../bootstrap-5.2.3-dist/js/bootstrap.bundle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet"/>
+    <link rel="stylesheet" href="../CSS/SanX.css">
+
+
+    <title>San-X TW</title>
+
+    <style>
+
+        #mainBG {
+            background-image: url(../img/BG/BG3.jpg);
+        }
+        
+        /* 輪播圖 */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1550px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        /* 應用動畫的類別 */
+        .fade {
+            opacity: 0;
+            animation-name: fadeInOut;
+            animation-duration: 3s;
+            animation-timing-function: ease-in-out; /* 平滑過渡 */
+            animation-iteration-count: infinite; /* 使動畫無限循環 */
+        }
+
+
+        /* 定義動畫 */
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            35% {
+                opacity: 1;
+            }
+
+            65% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+
+        /* ------------------------------------------- */
+
+        /* 整個頁面的Tabs / full page tabs */
+
+        /* Set height of body and the document to 100% to enable "full page tabs" */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Style tab links */
+        .tablink {
+            background-color: lightblue;
+            color: darkred;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            font-weight: bold;
+            width: 25%;
+        }
+
+        .tablink:hover {
+            background-color: lightgoldenrodyellow;
+        }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: darkred;
+            display: none;
+            padding: 100px 130px;
+            height: 100%;
+            /* flex: 1 1 auto; */
+            /* min-height: 100vh; */
+        }
+
+        #Character {
+            background-color: pink;
+        }
+
+        #News {
+            background-color: lightsteelblue;
+        }
+
+        #Link {
+            background-color: wheat;
+        }
+
+        #About {
+            background-color: peachpuff;
+        }
+
+        #Game {
+            background-color: thistle;
+        }
+
+
+        /* ------------------- */
+        /* 知名角色代表簡介表格 */
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid rgba(160, 71, 167, 0.8);
+            border-style: dashed;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .chara_table {
+            font-size: 14px;
+        }
+
+        img.chara_img {
+            width: 200px;
+            vertical-align: middle;
+        }
+
+        footer {
+            height: auto;
+            padding: 10px;
+            background-color: tan;
+            text-align: center;
+            color: darkred;
+        }
+
+        /* news */
+
+        .MyNews {
+            color: red;
+        }
+   
+    </style>
+
+</head>
+
+<body>
+    <header>
+
+        <div class="SanXlogo">
+            <img src="../img/logo/San-X.svg" alt="image is disappeared">
+        </div>
+
+        <!-- 輪播圖 -->
+
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fadeInOut">
+                <div class="numbertext">1 / 5</div>
+                <img src="../img/官網壁紙/62_1920_1080.png" style="width:100%">
+                <!-- <div class="text">Caption Text</div> -->
+            </div>
+
+            <div class="mySlides fadeInOut">
+                <div class="numbertext">2 / 5</div>
+                <img src="../img/官網壁紙/71_1920_1080.png" style="width:100%">
+                <!-- <div class="text">Caption Two</div> -->
+            </div>
+
+            <div class="mySlides fadeInOut">
+                <div class="numbertext">3 / 5</div>
+                <img src="../img/官網壁紙/73_1920_1080.png" style="width:100%">
+                <!-- <div class="text">Caption Three</div> -->
+            </div>
+
+            <div class="mySlides fadeInOut">
+                <div class="numbertext">4 / 5</div>
+                <img src="../img/官網壁紙/86_1920_1080.png" style="width:100%">
+                <!-- <div class="text">Caption Four</div> -->
+            </div>
+
+            <div class="mySlides fadeInOut">
+                <div class="numbertext">5 / 5</div>
+                <img src="../img/官網壁紙/106_1920_1080.png" style="width:100%">
+                <!-- <div class="text">Caption Four</div> -->
+            </div>
+
+        </div>
+        <br>
+
+
+    </header>
+
+   
+    <div id="mainBG"> 
+    <main class="container">
+        <!-- 頁籤 -->
+
+        <button class="tablink" onclick="openPage('About', this, 'peachpuff')">About</button>
+        <button class="tablink" onclick="openPage('Character', this, 'pink')">Character</button>
+        <button class="tablink" onclick="openPage('News', this, 'lightsteelblue')" id="defaultOpen">News</button>
+        <button class="tablink" onclick="openPage('Link', this, 'Wheat')">Link</button>
+        <!-- <button class="tablink" onclick="openPage('Game', this, 'thistle')">Game</button> -->
+
+
+        <!-- 關於/About頁籤 -->
+
+        <div id="About" class="tabcontent">
+            <h3>關於San-X</h3>
+            <hr>
+            <!-- <p>這是一個介紹San-X及其底下人氣角色的網站</p> -->
+            <p>San-X（サンエックス，San Ekkusu），是一個創立於1932年的文具企業，該企業以創造和行銷可愛卡通形象為人所熟知。 該企業曾創造如懶懶熊、趴趴熊、角落小夥伴、烤焦麵包等各具特色的擬人化角色。
+                趴趴熊的創造者末政ひかる曾表示：「這不只是可愛。有些不同的地方是 - （它們）有一副鬆弛而無力的模樣。」</p>
+            <p>為慶祝San-X公司創業90週年紀念，2022年時San-X在日本的松屋銀座舉辦到當時為止所有登場人物大集合的特別展覽會「San-X　90周年大展覽會」，並以此為開端，陸續在日本全國各地展開展覽，</p>
+            <p>這些角色不知不覺陪伴了人們好長一段時間了，未來他們也會繼續和各位一同成長，感受生活中的各種酸甜苦辣與歡欣幸福。</p>
+            <hr>
+            <p>
+            ✿介紹影片✿
+            </p>
+
+           <div class="d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/kPkb7zOU1oQ?si=7DP0-JPWWjAqfY1C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
+            web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- 角色/Character -->
+
+        <div id="Character" class="tabcontent">
+            <h3>知名角色代表簡介</h3>
+            <hr>
+            <!-- <p>本網站會介紹San-X旗下的一些知名角色</p> -->
+
+
+            <!-- 表格-知名角色代表 -->
+            <table class="table table-info chara_table" >
+                <tr class="table table-primary">
+                    <th style="width: 100px;">中文名稱</th>
+                    <th style="width: 100px;">日文名稱</th>
+                    <th style="width: 100px;">發表年月</th>
+                    <th>簡介</th>
+                    <th>外觀</th>
+                </tr>
+                <tr>
+                    <td>趴趴熊</td>
+                    <td>たれぱんだ</td>
+                    <td>1998年7月</td>
+                    <td>趴趴熊身長大約5公分左右，手感酷似一坨麻糬，性格慵懶，雖然有四隻腳，卻從不用來走路，而是用滾動方式移動，無論是前滾、後滾還是側翻都很擅長，但速度只有平均每小時2.75公尺……
+                        當兩隻貼貼時代表互有好感，上下堆疊代表熱戀中，但如果有明顯的大小差距，就只是單純的親子關係，屁股對人則代表厭惡。
+                    <td><img src="../img/character/panda-1.jpg" class=chara_img></td>
+                </tr>
+                <tr>
+                    <td>烤焦麵包</td>
+                    <td>こげぱん</td>
+                    <td>2000年7月</td>
+                    <td>一塊用優質北海道十勝平野原產最高級小豆製造而成的豆沙麵包，每日只限定售出20個。可惜因爲麵包師傅的失誤，讓本來十分名貴的麵包成了被燒焦的麵包，變成不能賣出的商品，
+                        這讓烤焦麵包受到了很大的打擊，覺得麵包的人生已經完結，從此過著自暴自棄的生活。
+                        烤焦麵包不時遭到其他麵包投以奇異目光，直到他遇見了草莓麵包、漂亮麵包、奶油麵包、炭焦麵包等其他的角色，才發覺作爲一個好賣麵包的人生雖然已經結束，但作爲一個好麵包的人生才要開始，
+                        只要和同伴們在一起，人生必定會走的非常快樂。</td>
+                    <td><img src="../img/character/kogepan-1.webp" class=chara_img></td>
+                </tr>
+                <tr>
+                    <td>拉拉熊</td>
+                    <td>リラックマ</td>
+                    <td>2003年9月</td>
+                    <td>拉拉熊(懶懶熊/Rilakkuma)名字的由來是日文片假名中「放鬆」（リラックス，rirakkusu）和「熊」（クマ，kuma）兩字的組合。某一天突然出現在小薰家中，擅自住下的布偶熊，真實身份不明。
+                        背後有拉鍊，可以看見裡面有水滴花紋的布料。繪本「懶熊生活」系列的封面就以半開的拉鍊以及水滴紋裝飾。
+                        繪本中偶爾也會有穿著河童或兔子等、熊以外的布偶的畫面。而且熊布偶裝是買來的，有許多件備用，有時也會洗淨晾乾。也曾經縮水變舊、被牛奶熊惡作劇加上裝飾等等。
+                        不過頭的部份，不確定是不是布偶、也不確定是否有備用及有沒有拿去洗。耳朵有時會因睡覺壓扁，似乎能夠自由地動耳朵。
+                        喜歡的食物是鬆餅、糯米糰子、熱蛋糕、蛋包飯、布丁等，不喜歡太辣的食物。常常躺著滾來滾去，喜歡黃色的抱枕（小薰的懶骨頭抱枕）。
+                        興趣是看電視、聽音樂、泡溫泉等。名言是「拘泥小細節是成不了事的」、「可以的話，真想這樣懶～懶過日子」、「唉唷，慢慢來嘛」。
+                    </td>
+                    <td><img src="../img/character/rilakkuma-1.webp" class=chara_img></td>
+                </tr>
+                <tr>
+                    <td>掌上萌寶<br>小海豹</td>
+                    <td>まめゴマ</td>
+                    <td>2005年5月</td>
+                    <td>小海豹 (まめゴマ) 是一種手掌大小的海豹 (日文「まめ」是豆，常被用作意指事物的微型版本，「ゴマ」是斑海豹 (ゴマフアザラシ)的縮寫 )。
+                        小海豹有多種不同的顏色，包括白色、藍色、粉色、黃色和黑色。這些小海豹通常被描繪成體型細小（12公分，重約200克），可以生活在一個普通的金魚缸中，
+                        通常用一些冰塊來保持水的涼爽。 它們還出現在浴缸中的廣告和商品中，以及在倉鼠籠的輪子上等。與普通海豹不同，小海豹是雜食性的，尤其是豆類，它也更喜歡枝豆。
+                        小學生小茜家中經營豆腐店，一天她偶然拯救了擱淺在海邊的白色小海豹，為了幫助身體虛弱的小海豹，她的朋友介紹她到小海豹樂園，並把牠帶回家。
+                        可愛的小海豹被改名為豆太，將作為豆川家的新成員生活。</td>
+                    <td><img src="../img/character/mamegoma-1.webp" class=chara_img></td>
+                </tr>
+                <tr>
+                    <td>靴下貓</td>
+                    <td>靴下にゃんこ</td>
+                    <td>2007年9月</td>
+                    <td>靴下(KUTSUSHITA)的意思是襪子，にやんこ(NYANKO)是稱呼貓咪的一種可愛說法。
+                        有一天，有隻迷了路、腳穿著白色襪子的黑貓——靴下貓出現在家裡。脖子上繫著一條紅色項圈。巧合之下，跑進了主人的房子，就這麼住下來了…
+                        「靴下貓」療癒了你我在忙碌的日子裡焦躁不安的心靈。那雙無辜的大眼睛給了我們最大的撫慰力量，也帶我們重新認識幸福可以多簡單。牠讓我們知道，原來幸福就在身邊。
+                        雖然偶爾會調皮搗蛋，模樣可愛又愛撒嬌的牠的確讓生活變得更有趣。一直以為只是暫時收留靴下貓，刻意不關窗，方便牠想走就走。直到那天，
+                        接到那通來電。靴下貓終於要回到原飼主家了。那一晚，才發現原來握在手中的小小幸福，竟是如此珍貴。</td>
+                    <td><img src="../img/character/nyanko-1.jpg" class=chara_img></td>
+                </tr>
+                <tr>
+                    <td>深情馬戲團(憂傷馬戲團)</td>
+                    <td>センチメンタルサーカス</td>
+                    <td>2010年9月</td>
+                    <td>歡迎來到寂寞人的馬戲團……一個關於淡忘已久的老朋友的故事。在垃圾場裡醒來的布偶夏波，對當晚看見的巡迴馬戲團念念不忘，於是組成了「深情馬戲團」。
+                        成員們來自小巷，街角，或是廢墟裡的遊樂園等等，每一個都是「被遺忘的寂寞人」。
+                        —也許某一天會再遇到能夠珍惜自己的「主人」—因此今晚，布偶們的第一晚演出，即將揭開序幕。</td>
+                    <td><img src="../img/character/senti-1.webp" class="chara_img"></td>
+                </tr>
+                <tr>
+                    <td>角落小夥伴(角落生物)</td>
+                    <td>すみっコぐらし</td>
+                    <td>2012年9月</td>
+                    <td>「すみっこぐらし」（Sumikko Gurashi）在台灣被翻譯為角落小夥伴、角落生物，「すみ」是「角落」的意思，這系列的每個角色都喜歡窩在角落，只要靠著牆就很有安全感，
+                        一般窩在角落總是給人一種被邊緣、冷落的可憐刻板印象，但「角落小夥伴」們卻被塑造出即使躲在黑暗小角落也療癒、可愛的模樣。
+                        每隻角色都有自己的祕密，還有讓人會心一笑又鮮明的性格，加上它們聚在一起時讓人體悟到，找到一個讓自己安心的地方、找到屬於自己的角落，是一件很棒的事，
+                        讓大家在疲累的群聚生活裡得以獲得滿滿療癒。</td>
+                    <td><img src="../img/character/sumikkogurashi-1.png" class="chara_img"></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 最新消息 -->
+
+        <div id="News" class="tabcontent">
+            <h3>最新消息</h3>
+            
+            <hr>
+
+            <h3>1</h3>
+            <p><span class="MyNews">NEW</span> July 25th, 2024
+                “Sumikkogurashi Book Fair” will be held at famous bookstores across Japan, where Sumikkogurashi related book corners will be set up.
+                In conjunction with this event, some stores will open cafes where you can enjoy collaboration menus.
+                Check here for the list of stores and the lineup of goods!</p>
+            <br>
+            <p><span class="MyNews">NEW</span> 2024年7月25日，「角落生物書展」將在日本各地的著名書店舉辦，屆時將設立與角落生物相關的圖書角落。
+                配合此活動，一些商店將開設咖啡館，您可以在那裡享受合作菜單。店舖一覽及商品種類請在以下網頁確認！
+            <br>
+            <a href="https://www.san-x.co.jp/sumikko/bookcafe_kentei/2024/" target="_blank">https://www.san-x.co.jp/sumikko/bookcafe_kentei/2024/</a></p>
+
+            <hr>
+
+            <h3>2</h3>
+            <p><span class="MyNews">NEW</span> July 25th, 2024
+                The official X (Twitter) and Instagram of San-x's new character “Cheercheerlambs” started on July 17, 2024.
+                Cheercheerlambs are characters that give you cheers and positive energy.
+                The curious and cheerful “Ramuu” and the easy-going and gentle “Uryufu” will deliver positive messages!
+                Please don’t forget to follow us on social media!
+            <br>
+            <p><span class="MyNews">NEW</span> 2024年7月25日 San-x的新角色「ちあちあラムズ(Cheercheerlambs)」的官方X（Twitter）和Instagram於2024年7月17日開始。
+                好奇開朗的“らむぅ(Ramuu)”和隨和溫柔的“Uryufu(うりゅふ)”將傳遞積極的訊息！請不要忘記在社交媒體上關注我們！
+            <br>
+            <a href="https://www.san-x.co.jp/blog/toretate/2024/07/xinstagram.html" target="_blank">https://www.san-x.co.jp/blog/toretate/2024/07/xinstagram.html</a></p>
+
+            <hr>
+
+            <h3>3</h3>
+            <p>July 5th, 2024
+                New Character of Sumikkogurashi “Ebiten no shippo”♪
+                We are pleased to announce the arrival of a new character, "Ebiten no Shippo"!
+                We will be posting more stories on Sumikkogurashi's official X (@sumikko_335) and other sites, so please look forward to updates!
+            <br>
+            <p>2024 年 7 月 5 日
+                角落生物的新角色「えびてんのしっぽ(炸蝦尾)」♪
+                我們很高興地宣布新角色“えびてんのしっぽ(炸蝦尾)”的到來！
+                我們將在角落生物的官方X（@sumikko_335）和其他網站上發布更多故事，敬請期待更新！
+            <br>
+            <a href="https://www.san-x.co.jp/blog/toretate/2024/06/post-5128.html" target="_blank">https://www.san-x.co.jp/blog/toretate/2024/06/post-5128.html</a></p>
+
+            <hr>
+
+            <h3>4</h3>
+            <p>July 5th, 2024
+                POP UP SHOP of "Funwarinecolon" and " Sugarcocomuu" will be held♪
+                Pop-up stores will be held at several locations from July 12th.
+                There are also special decorations that can only be seen at the venue, so please make sure not to miss this opportunity.
+            <br>
+            <p>2024 年 7 月 5 日
+                將舉辦「「ふんわりねころん(Funwarinecolon)」和「シュガーココムー(Sugarcocomuu)」的快閃店♪
+                快閃店將於 7 月 12 日起在多個地點開設。
+                還有只有在會場才能看到的特別裝飾，請務必不要錯過這個機會。
+            <br>
+            <a href="https://www.san-x.co.jp/blog/toretate/2024/06/pop-up-shop-8.html" target="_blank">https://www.san-x.co.jp/blog/toretate/2024/06/pop-up-shop-8.html</a></p>
+
+            <hr>
+
+            <h3>5</h3>
+            <p>July 5th, 2024
+                Korilakkuma's Exciting Trip started on June 27th at the Tokyo venue!
+                Please stop by the venue and enjoy the adorable items at the event!
+            <br>
+            <p>2024 年 7 月 5 日
+                牛奶熊的精彩旅程於6月27日在東京會場開始！
+                請務必前往會場，享受活動中的可愛物品！
+            <br>
+            <a href="https://www.san-x.co.jp/blog/toretate/2024/06/627-2.html" target="_blank">https://www.san-x.co.jp/blog/toretate/2024/06/627-2.html</a></p>
+
+            <hr>
+
+        </div>
+
+        <!-- 相關連結 -->
+
+        <div id="Link" class="tabcontent">
+            <h3>相關連結</h3>
+            <hr>
+            <h5>官方網站(日語)</h5>
+            <p><a href="https://www.san-x.co.jp/" target="_blank">https://www.san-x.co.jp/</a></p>
+            <br>
+            <h5>官方網站(英文)</h5>
+            <p><a href="https://www.san-x.jp/" target="_blank">https://www.san-x.jp/</a></p>
+            <br>
+            <h5>官方Youtube頻道</h5>
+            <p><a href="https://www.youtube.com/user/sanxmovie"
+                    target="_blank">https://www.youtube.com/user/sanxmovie</a></p>
+            <br>
+            <h5>官方X(原Twitter)</h5>
+            <p><a href="https://x.com/sanx_official" target="_blank">https://x.com/sanx_official</a></p>
+            <br>
+            <h5>官方Facebook粉絲專頁</h5>
+            <p><a href="https://www.facebook.com/sanxjpn?ref=hl" target="_blank">https://www.facebook.com/sanxjpn?ref=hl</a></p>
+            <br>
+            <h5>懶懶熊官方X(原Twitter)</h5>
+            <p><a href="https://x.com/rilakkuma_gyr" target="_blank">https://x.com/rilakkuma_gyr</a></p>
+            <br>
+            <h5>憂傷馬戲團官方X(原Twitter)</h5>
+            <p><a href="https://x.com/Senti_official" target="_blank">https://x.com/Senti_official</a></p>
+            <br>
+            <h5>角落生物官方X(原Twitter)</h5>
+            <p><a href="https://x.com/sumikko_335" target="_blank">https://x.com/sumikko_335</a></p>
+            <hr>
+            <h3>小遊戲</h3>
+            <hr>
+            <button class="btn" style="background-color:DarkSalmon;" onclick="gotoGame()">角落生物辨認小遊戲</button>
+        </div>
+
+        <!-- 小遊戲 -->
+<!-- 
+        <div id="Game" class="tabcontent">
+            <h3>小遊戲</h3>
+            <hr>
+            <button class="btn btn-light" onclick="gotoGame()">角落生物辨認小遊戲</button>
+        </div> -->
+
+    </main>
+</div>
+
+    <footer>
+        <p>
+            <!-- ⓒSAN-X CO., LTD. ALL RIGHTS RESERVED.
+            <br>
+            〒101-0046
+            <br>
+            東京都千代田区神田多町2-4
+            <br>
+            【アクセス】JR 神田駅、銀座線神田駅、丸ノ内線淡路町駅
+            <br> -->
+            地址:台中市南屯區公益路二段51號18樓
+            <br>
+            Tel : (04) 2326-5860
+            <br>
+            服務時間 : 一至五 09:00 至 17:30
+            <br>
+            <a href="mailto:SanXtw_12345@gmail.com" style="color: darkred;">
+            <img src="../img/email_icon_br.png" style="width: 20px; color: darked;" >
+            Email:SanXtw_12345@gmail.com
+            </a>
+        </p>
+    </footer>
+
+    <script>
+        //彈出式視窗
+
+        function gotoGame() {
+          window.open("Game.html", 'newwin', 'width=850,resizable=no,scrollbars=yes,toolbar=no,location=no,status=no');
+        }
+
+
+        /* ------自動輪播圖------ */
+        // Automatic Slideshow
+
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex-1].style.display = "block";
+        setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+
+        /* ----------------------------------- */ 
+
+        /* 整個頁面的Tabs / full page tabs */
+
+        function openPage(pageName, elmnt, color) {
+            // Hide all elements with class="tabcontent" by default */
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Remove the background color of all tablinks/buttons
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+
+            // Show the specific tab content
+            document.getElementById(pageName).style.display = "block";
+
+            // Add the specific color to the button used to open the tab content
+            elmnt.style.backgroundColor = color;
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+        /* ----------------------------------- */ 
+    </script>
+
+
+</body>
+
+</html>
